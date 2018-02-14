@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+    sshd:
+        build: .
+        #command: -d
+        volumes:
+          - /dev/syslog:/dev/syslog
+          - /dev/log:/dev/log
+        env_file:
+          - ./.env
+        environment:
+          LOCAL_MARKER_GROUP: "iam-users"
+          LOCAL_GROUPS: ""
+          ASSUMEROLE: ""
+          DONOTSYNC: 0
+        ports:
+          - "10022:22"
